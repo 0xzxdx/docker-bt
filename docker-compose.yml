@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  aria2:
+    image: centos
+    restart: always
+    volumes:
+      - "./aria2:/etc/aria2/"
+    ports:
+      - "6800:6800"
+    command: bash /etc/aria2/run.sh
