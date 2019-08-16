@@ -5,7 +5,29 @@ services:
     image: centos
     restart: always
     volumes:
-      - "./aria2:/etc/aria2/"
-    ports:
-      - "6800:6800"
+      - "./aria2:/etc/aria2"
+      - "./store:/store"
     command: bash /etc/aria2/run.sh
+
+  php:
+    image: php:fpm
+    volumes:
+        - "./store:/usr/share/nginx/html/store"
+
+  nginx:
+    image: nginx
+    restart: always
+    volumes:
+      - "./nginx/default.conf:/etc/nginx/conf.d/default.conf"
+      - "./nginx/index.html:/usr/share/nginx/html/index.html"
+      - "./store:/usr/share/nginx/html/store"
+      - "./nginx/run.sh:/etc/nginx/run.sh"
+    ports:
+      - "9099:80"
+    links:
+      - aria2
+      - php
+    depends_on:
+      - aria2
+      - php
+    command: bash /etc/nginx/run.sh
