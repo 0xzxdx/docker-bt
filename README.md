@@ -28,6 +28,11 @@ $ docker-compose restart aria2
 |aria2|http://your_ip:9099/jsonrpc|
 |h5ai|http://your_ip:9099/store/|
 
+### 截图
+
+![aria2](https://i.loli.net/2019/08/16/gpoLJj17b4RnyEQ.png)
+![h5ai](https://i.loli.net/2019/08/16/IbLUCTOYDQsxSR5.png)
+
 ## 集成包
 
 1. [aria2](https://github.com/aria2/aria2)
