@@ -8,7 +8,7 @@ services:
       - "./aria2:/etc/aria2"
       - "./store:/store"
       - "./scripts/aria2.sh:/aria2.sh"
-    command: /aria2.sh
+    command: bash /aria2.sh
 
   php:
     image: php:fpm
