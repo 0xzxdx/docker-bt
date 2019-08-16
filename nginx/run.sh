@@ -11,6 +11,7 @@ fi
 if [ ! -d "/usr/share/nginx/html/store/private" ]; then
     wget https://release.larsjung.de/h5ai/h5ai-0.29.2.zip
     unzip h5ai-0.29.2.zip
+    chmod 777 -R _h5ai
     mv _h5ai/{private,public} /usr/share/nginx/html/store/
     rm -fr _h5ai h5ai-0.29.2.zip
 fi
