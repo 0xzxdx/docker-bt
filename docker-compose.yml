@@ -7,12 +7,15 @@ services:
     volumes:
       - "./aria2:/etc/aria2"
       - "./store:/store"
-    command: bash /etc/aria2/run.sh
+      - "./scripts/aria2.sh:/aria2.sh"
+    command: /aria2.sh
 
   php:
     image: php:fpm
     volumes:
         - "./store:/usr/share/nginx/html/store"
+        - "./scripts/php.sh:/php.sh"
+    command: bash /php.sh
 
   nginx:
     image: nginx
@@ -21,7 +24,7 @@ services:
       - "./nginx/default.conf:/etc/nginx/conf.d/default.conf"
       - "./nginx/index.html:/usr/share/nginx/html/index.html"
       - "./store:/usr/share/nginx/html/store"
-      - "./nginx/run.sh:/etc/nginx/run.sh"
+      - "./scripts/nginx.sh:/nginx.sh"
     ports:
       - "9099:80"
     links:
@@ -30,4 +33,4 @@ services:
     depends_on:
       - aria2
       - php
-    command: bash /etc/nginx/run.sh
+    command: bash /nginx.sh
