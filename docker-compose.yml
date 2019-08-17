@@ -8,6 +8,11 @@ services:
       - "./aria2:/etc/aria2"
       - "./store:/store"
       - "./scripts/aria2.sh:/aria2.sh"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "1"
+        max-size: "1m"
     command: bash /aria2.sh
 
   php:
@@ -15,6 +20,11 @@ services:
     volumes:
         - "./store:/usr/share/nginx/html/store"
         - "./scripts/php.sh:/php.sh"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "1"
+        max-size: "1m"
     command: bash /php.sh
 
   nginx:
@@ -33,4 +43,9 @@ services:
     depends_on:
       - aria2
       - php
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "1"
+        max-size: "1m"
     command: bash /nginx.sh
