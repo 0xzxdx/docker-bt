@@ -2,7 +2,7 @@ version: '3'
 
 services:
   aria2:
-    image: centos7
+    image: centos:7
     restart: always
     volumes:
       - "./aria2:/etc/aria2"
